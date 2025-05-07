@@ -1,0 +1,71 @@
+<div class="isolate">
+  <div class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-6 pt-28 lg:pt-36 pb-32  lg:px-8">
+      <div class="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-start">
+        <div class="relative w-full lg:max-w-xl lg:shrink-0 xl:max-w-2xl lg:top-10">
+          <h1 class="text-5xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-6xl">¡Consigue seguidores y likes reales y activos en segundos!</h1>
+          <p class="mt-8 text-lg font-medium text-pretty text-gray-500 sm:max-w-md sm:text-lg lg:max-w-none">El mejor servicio en España. Garantía de por vida. Entrega inmediata.</p>
+
+          <!-- Iconos redes sociales -->
+          <div id="scrollShow" class="sm:w-fit mx-auto mt-6 sm:mt-6 flex justify-center gap-2">
+            <button type="button"
+            [class]="socialMedia!=0?'opacity-40 hover:opacity-70':'bg-white border-gray-300'"
+            class="relative cursor-pointer transition rounded-2xl" (click)="setNumber(0)">
+              <div [class]="socialMedia==0?'border-amber-500 bg-white shadow-md':'bg-white border-gray-300'"
+              class="rounded-2xl border-[3px]  w-fit p-2.5 transition-colors duration-100">
+                <img src="/icons/instagram.svg" class="size-14 sm:size-16">
+              </div>
+              <div class="w-full h-full absolute bg-black/10 top-0 left-0 rounded-2xl hidden"></div>
+            </button>
+
+            <button type="button"
+            [class]="socialMedia!=1?'opacity-40 hover:opacity-70':'bg-white border-gray-300'"
+            class="relative cursor-pointer transition rounded-2xl" (click)="setNumber(1)">
+              <div [class]="socialMedia==1?'border-gray-900 bg-white shadow-md':'bg-white border-gray-300'"
+                class="rounded-2xl border-[3px]  w-fit p-2.5 transition-colors duration-100">
+                <img src="/icons/tiktok.svg" class="size-14 sm:size-16">
+              </div>
+              <div class="w-full h-full absolute bg-black/10 top-0 left-0 rounded-2xl hidden"></div>
+            </button>
+
+            <button type="button"
+            [class]="socialMedia!=2?'opacity-40 hover:opacity-70':'bg-white border-gray-300'"
+            class="relative cursor-pointer transition rounded-2xl" (click)="setNumber(2)">
+              <div [class]="socialMedia==2?'border-blue-500 bg-white shadow-md':'bg-white border-gray-300'"
+                class="rounded-2xl border-[3px] w-fit p-2.5 transition-colors duration-100">
+                <img src="/icons/facebook.svg" class="size-14 sm:size-16">
+              </div>
+              <div class="w-full h-full absolute bg-black/10 top-0 left-0 rounded-2xl hidden"></div>
+            </button>
+          </div>
+          <!-- caja de servicios -->
+          <app-service-card-list [numberSocialMedia]="socialMedia"/>
+        </div>
+          <!-- Iconos de emojis -->
+        <div class="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
+          <div class="ml-auto  flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
+            <div class="absolute blur-xs top-[2%] left-[60%] -z-10 opacity-20 w-44 sm:blur-none sm:relative sm:top-0 sm:left-0 sm:opacity-100">
+              <img src="icons/3DLike.svg" alt="" class="aspect-2/3 w-full object-contain drop-shadow-xl drop-shadow-gray-700/30 animate-[bounce_2s_ease-in-out_both]">
+            </div>
+          </div>
+          <div class="mr-auto flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
+            <div class="absolute blur-xs top-[30%] left-[0%] -z-10 opacity-20 w-44 sm:blur-none sm:relative sm:top-0 sm:left-0 sm:opacity-100">
+              <img src="icons/3DThunder.svg" alt="" class="aspect-2/3 w-full object-contain drop-shadow-xl drop-shadow-gray-700/30 animate-[bounce_2s_ease-in-out_forwards]">
+            </div>
+            <div class="absolute blur-xs top-[78%] left-[60%] -z-10 opacity-20 w-44 sm:blur-none sm:relative sm:top-0 sm:left-0 sm:opacity-100">
+              <img src="icons/3DHappy.svg" alt="" class="aspect-2/3 w-full object-contain drop-shadow-xl drop-shadow-gray-700/30 animate-[bounce_2s_ease-in-out_forwards]">
+            </div>
+          </div>
+          <div class="flex-none space-y-8 pt-32 sm:pt-0">
+            <div class="absolute blur-xs top-[40%] left-[80%] -z-10 opacity-20 w-44 sm:blur-none sm:relative sm:top-0 sm:left-0 sm:opacity-100">
+              <img src="icons/3DGlobe.svg" alt="" class="aspect-2/3 w-full object-contain drop-shadow-xl drop-shadow-gray-700/30 animate-[bounce_2s_ease-in-out_forwards]">
+            </div>
+            <div class="absolute blur-xs top-[65%] left-[-10%] -z-10 opacity-20 w-44 sm:blur-none sm:relative sm:top-0 sm:left-0 sm:opacity-100">
+              <img src="icons/3DHeart.svg" alt="" class="aspect-2/3 w-full object-contain drop-shadow-xl drop-shadow-gray-700/30 animate-[bounce_2s_ease-in-out_forwards]">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
