@@ -1,0 +1,105 @@
+<div class="bg-transparent">
+  <div class="mx-auto max-w-7xl px-5 pt-10 pb-20 lg:py-24 lg:px-8">
+    <div class="mx-auto max-w-4xl text-start">
+      <header class="grid grid-cols-1 sm:grid-cols-3 items-center justify-between ">
+        <div class="col-span-2">
+          <h2 class="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Preguntas frecuentes</h2>
+          <p class="mt-6 max-w-2xl m-auto text-base/7 text-gray-600">A continuación encontrará la respuesta a las preguntas más frecuentes que se plantean sobre nuestros servicios.</p>
+        </div>
+        <div class="hidden sm:flex  justify-center">
+          <img src="icons/Stiker_Question.svg" class="size-36" alt="Stiker Pregunta">
+        </div>
+      </header>
+
+      <dl class="mt-16 divide-y divide-gray-900/10">
+        <div class="py-6 first:pt-0 last:pb-0 group">
+          <dt>
+            <!-- Expand/collapse question button -->
+            <button (click)="setQuestion(1)" type="button" class="flex w-full items-start justify-between text-left text-gray-900 cursor-pointer" aria-controls="faq-0" aria-expanded="false">
+              <span class="text-base/7 font-semibold">¿Cuanto tiempo tardamos en entregar el pedido?</span>
+              <span class="ml-6 flex h-7 items-center">
+                <!-- Open icon -->
+                <svg [class]="question!=1?'block':'hidden'" class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                </svg>
+                <!-- Close icon -->
+                <svg [class]="question==1?'block':'hidden'" class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
+                </svg>
+              </span>
+            </button>
+          </dt>
+          <dd [class]="question==1?'block':'hidden'" class="mt-2 pr-12" id="faq-0">
+            <p class="text-base/7 text-gray-600">La entrega del pedido se realiza instantáneamente.</p>
+          </dd>
+        </div>
+
+        <div class="py-6 first:pt-0 last:pb-0 group">
+          <dt>
+            <!-- Expand/collapse question button -->
+            <button (click)="setQuestion(2)" type="button" class="flex w-full items-start justify-between text-left text-gray-900 cursor-pointer" aria-controls="faq-0" aria-expanded="false">
+              <span class="text-base/7 font-semibold">¿Corres el riesgo de ser sancionado si utilizas nuestros servicios?</span>
+              <span class="ml-6 flex h-7 items-center">
+                <!-- Open icon -->
+                <svg [class]="question!=2?'block':'hidden'" class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                </svg>
+                <!-- Close icon -->
+                <svg [class]="question==2?'block':'hidden'" class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
+                </svg>
+              </span>
+            </button>
+          </dt>
+          <dd [class]="question==2?'block':'hidden'" class="mt-2 pr-12" id="faq-0">
+            <p class="text-base/7 text-gray-600">Absolutamente no. Nuestros servicios son de la más alta calidad y no hay riesgo de que sus cuentas de redes sociales sean prohibidas o penalizadas.</p>
+          </dd>
+        </div>
+
+        <div class="py-6 first:pt-0 last:pb-0 group">
+          <dt>
+            <!-- Expand/collapse question button -->
+            <button (click)="setQuestion(3)" type="button" class="flex w-full items-start justify-between text-left text-gray-900 cursor-pointer" aria-controls="faq-0" aria-expanded="false">
+              <span class="text-base/7 font-semibold">¿Necesitas mi contraseña para ofrecer los servicios?</span>
+              <span class="ml-6 flex h-7 items-center">
+                <!-- Open icon -->
+                <svg [class]="question!=3?'block':'hidden'" class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                </svg>
+                <!-- Close icon -->
+                <svg [class]="question==3?'block':'hidden'" class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
+                </svg>
+              </span>
+            </button>
+          </dt>
+          <dd [class]="question==3?'block':'hidden'" class="mt-2 pr-12" id="faq-0">
+            <p class="text-base/7 text-gray-600">No, no necesitamos contraseñas u otras credenciales para brindar los servicios. Tenga cuidado con los sitios que le piden esta información y no revele la contraseña de sus cuentas de redes sociales a nadie.</p>
+          </dd>
+        </div>
+
+        <div class="py-6 first:pt-0 last:pb-0 group">
+          <dt>
+            <!-- Expand/collapse question button -->
+            <button (click)="setQuestion(4)" type="button" class="flex w-full items-start justify-between text-left text-gray-900 cursor-pointer" aria-controls="faq-0" aria-expanded="false">
+              <span class="text-base/7 font-semibold">¿Los servicios prestados pertenecen a usuarios reales?</span>
+              <span class="ml-6 flex h-7 items-center">
+                <!-- Open icon -->
+                <svg [class]="question!=4?'block':'hidden'" class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                </svg>
+                <!-- Close icon -->
+                <svg [class]="question==4?'block':'hidden'" class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
+                </svg>
+              </span>
+            </button>
+          </dt>
+          <dd [class]="question==4?'block':'hidden'" class="mt-2 pr-12" id="faq-0">
+            <p class="text-base/7 text-gray-600">Los servicios provienen exclusivamente de usuarios reales. No utilizamos bots, cuentas falsas u otro tipo de manipulaciones para brindar nuestros servicios.</p>
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</div>

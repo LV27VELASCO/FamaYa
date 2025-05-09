@@ -1,2 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+
+@theme {
+  --animate-text-slide: text-slide 10s ease-in-out infinite;
+
+  @keyframes text-slide {
+    0%, 15% {
+      transform: translateY(0%);
+    }
+    20%, 35% {
+      transform: translateY(-33.833%);
+    }
+    40%, 60% {
+      transform: translateY(-67.3%);
+    }
+    65%, 85% {
+      transform: translateY(-33.833%);
+    }
+    90%, 100% {
+      transform: translateY(0%);
+    }
+  }
+}

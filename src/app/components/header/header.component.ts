@@ -3,7 +3,7 @@ import { BannerComponent } from '../banner/banner.component';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [BannerComponent],
   templateUrl: './header.component.html'
 })
 export class HeaderComponent {
