@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { BannerComponent } from '../banner/banner.component';
+import { BannerPromoComponent } from '../banner-promo/banner-promo.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [BannerComponent],
+  imports: [BannerPromoComponent,RouterOutlet],
   templateUrl: './header.component.html'
 })
 export class HeaderComponent {

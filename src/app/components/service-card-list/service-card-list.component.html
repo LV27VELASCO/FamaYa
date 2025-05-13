@@ -2,16 +2,18 @@
 [class]="numberSocialMedia==0?'bg-orange-50/50':numberSocialMedia==1?'bg-gray-100/50':'bg-blue-50/50'"
 class="mt-10 max-w-md w-full mx-auto p-4 rounded-3xl transition-colors duration-100">
   <!-- Seguidores -->
-  <div class="flex items-center justify-between w-full p-4 bg-white rounded-xl mb-3 shadow-sm hover:bg-gray-50 transition-colors cursor-pointer">
+  <div [routerLink]="[SocialMedia[numberSocialMedia].followers.link]"
+  class="flex items-center justify-between w-full p-4 bg-white rounded-xl mb-3 shadow-sm hover:bg-gray-50 transition-colors cursor-pointer">
     <div class="flex items-center">
       <div
+      [routerLink]="[SocialMedia[numberSocialMedia].followers.link]"
       [class]="numberSocialMedia==0?'bg-orange-500':numberSocialMedia==1?'bg-gray-700':'bg-blue-600'"
       class="text-white p-1.5 rounded-lg mr-3 transition-colors duration-100">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-6">
           <path d="M10 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.465 14.493a1.23 1.23 0 0 0 .41 1.412A9.957 9.957 0 0 0 10 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 0 0-13.074.003Z" />
         </svg>
       </div>
-      <span class="font-medium text-gray-800">{{socialMedia[numberSocialMedia].followers}}</span>
+      <span class="font-medium text-gray-800">{{SocialMedia[numberSocialMedia].followers.label}}</span>
     </div>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-7 text-gray-400">
       <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
@@ -19,9 +21,11 @@ class="mt-10 max-w-md w-full mx-auto p-4 rounded-3xl transition-colors duration-
   </div>
 
   <!-- Likes -->
-  <div class="flex items-center justify-between w-full p-4 bg-white rounded-xl mb-3 shadow-sm hover:bg-gray-50 transition-colors cursor-pointer">
+  <div [routerLink]="[SocialMedia[numberSocialMedia].likes.link]"
+  class="flex items-center justify-between w-full p-4 bg-white rounded-xl mb-3 shadow-sm hover:bg-gray-50 transition-colors cursor-pointer">
     <div class="flex items-center">
-      <div [class]="numberSocialMedia==0?'bg-orange-500':numberSocialMedia==1?'bg-gray-700':'bg-blue-600'"
+      <div
+      [class]="numberSocialMedia==0?'bg-orange-500':numberSocialMedia==1?'bg-gray-700':'bg-blue-600'"
       class="text-white p-1.5 rounded-lg mr-3 transition-colors duration-100">
         @if (numberSocialMedia==2) {
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-6">
@@ -34,7 +38,7 @@ class="mt-10 max-w-md w-full mx-auto p-4 rounded-3xl transition-colors duration-
         }
 
       </div>
-      <span class="font-medium text-gray-800">{{socialMedia[numberSocialMedia].likes}}</span>
+      <span class="font-medium text-gray-800">{{SocialMedia[numberSocialMedia].likes.label}}</span>
     </div>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-7 text-gray-400">
       <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
@@ -42,16 +46,18 @@ class="mt-10 max-w-md w-full mx-auto p-4 rounded-3xl transition-colors duration-
   </div>
 
   <!-- Visitas -->
-  <div class="flex items-center justify-between w-full p-4 bg-white rounded-xl mb-3 shadow-sm hover:bg-gray-50 transition-colors cursor-pointer">
+  <div [routerLink]="[SocialMedia[numberSocialMedia].viewers.link]"
+   class="flex items-center justify-between w-full p-4 bg-white rounded-xl mb-3 shadow-sm hover:bg-gray-50 transition-colors cursor-pointer">
     <div class="flex items-center">
-      <div [class]="numberSocialMedia==0?'bg-orange-500':numberSocialMedia==1?'bg-gray-700':'bg-blue-600'"
+      <div
+      [class]="numberSocialMedia==0?'bg-orange-500':numberSocialMedia==1?'bg-gray-700':'bg-blue-600'"
       class="text-white p-1.5 rounded-lg mr-3 transition-colors duration-100">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-6">
           <path d="M10 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
           <path fill-rule="evenodd" d="M.664 10.59a1.651 1.651 0 0 1 0-1.186A10.004 10.004 0 0 1 10 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0 1 10 17c-4.257 0-7.893-2.66-9.336-6.41ZM14 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" clip-rule="evenodd" />
         </svg>
       </div>
-      <span class="font-medium text-gray-800">{{socialMedia[numberSocialMedia].viewers}}</span>
+      <span class="font-medium text-gray-800">{{SocialMedia[numberSocialMedia].viewers.label}}</span>
     </div>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-7 text-gray-400">
       <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
