@@ -10,13 +10,13 @@
     </div>
     <div class="flex lg:hidden">
       <div class="flow-root mr-5">
-          <a href="#" class="group -m-2 flex items-center p-2">
-            <svg class="size-6 shrink-0 text-gray-400 group-hover:text-gray-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+          <button (click)="changeShoppingCart(true)" class="group -m-2 flex items-center p-2 cursor-pointer relative">
+            <svg class="size-6 shrink-0 text-gray-400 group-hover:text-gray-800" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
               <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"></path>
             </svg>
-            <span class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+            <span class="ml-1 text-xs font-medium text-gray-50 group-hover:text-gray-100 absolute top-0 right-0 py-0.5 px-1.5 rounded-full bg-gradient-to-r from-purple-400 to-fuchsia-600">0</span>
             <span class="sr-only">items in cart, view bag</span>
-          </a>
+          </button>
       </div>
       <button type="button" (click)="showMenu()" class="-m-2.5 inline-flex cursor-pointer items-center justify-center rounded-md p-2.5 text-gray-700">
         <span class="sr-only">Open main menu</span>
@@ -25,6 +25,7 @@
         </svg>
       </button>
     </div>
+    <!-- Menú Desktop-->
     <div [class]="btnMenu?'block ':'hidden'" class="hidden lg:flex lg:gap-x-12 mr-[21%]">
       <div class="relative group pb-3">
         <button type="button" class="flex items-center gap-x-1 text-sm font-semibold text-gray-900" aria-expanded="false">
@@ -271,13 +272,13 @@
       </div>
 
       <div class="flow-root">
-          <a href="#" class="group -m-2 flex items-center p-2">
+          <button (click)="changeShoppingCart(true)" class="group -m-2 flex items-center p-2 cursor-pointer relative">
             <svg class="size-6 shrink-0 text-gray-400 group-hover:text-gray-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
               <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"></path>
             </svg>
-            <span class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+            <span class="ml-1 text-xs font-medium text-gray-50 group-hover:text-gray-100 absolute top-0 right-1 py-0.5 px-1.5 rounded-full bg-gradient-to-r from-purple-400 to-fuchsia-600">0</span>
             <span class="sr-only">items in cart, view bag</span>
-          </a>
+          </button>
       </div>
     </div>
   </nav>
@@ -314,17 +315,17 @@
 
               <div class="mt-2 space-y-2 overflow-hidden text-sm font-semibold
                           [&>a]:bg-gradient-to-r [&>a]:from-fuchsia-800/10 [&>a]:via-red-600/10 [&>a]:to-yellow-500/10">
-                <a href="#" class="flex items-center rounded-lg py-2.5 pr-3 pl-4">
+                <a [routerLink]="['/instagram-followers']" class="flex items-center rounded-lg py-2.5 pr-3 pl-4">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 pr-1.5">
                     <path d="M10 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.465 14.493a1.23 1.23 0 0 0 .41 1.412A9.957 9.957 0 0 0 10 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 0 0-13.074.003Z" />
                   </svg>
                   Seguidores en Instagram</a>
-                <a href="#" class="flex items-center rounded-lg py-2.5 pr-3 pl-4">
+                <a [routerLink]="['/instagram-likes']" class="flex items-center rounded-lg py-2.5 pr-3 pl-4">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 pr-1.5">
                     <path d="m9.653 16.915-.005-.003-.019-.01a20.759 20.759 0 0 1-1.162-.682 22.045 22.045 0 0 1-2.582-1.9C4.045 12.733 2 10.352 2 7.5a4.5 4.5 0 0 1 8-2.828A4.5 4.5 0 0 1 18 7.5c0 2.852-2.044 5.233-3.885 6.82a22.049 22.049 0 0 1-3.744 2.582l-.019.01-.005.003h-.002a.739.739 0 0 1-.69.001l-.002-.001Z" />
                   </svg>
                   Likes en Instagram</a>
-                <a href="#" class="flex items-center rounded-lg py-2.5 pr-3 pl-4">
+                <a [routerLink]="['/instagram-views']" class="flex items-center rounded-lg py-2.5 pr-3 pl-4">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 pr-1.5">
                     <path d="M10 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
                     <path fill-rule="evenodd" d="M.664 10.59a1.651 1.651 0 0 1 0-1.186A10.004 10.004 0 0 1 10 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0 1 10 17c-4.257 0-7.893-2.66-9.336-6.41ZM14 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" clip-rule="evenodd" />
@@ -347,17 +348,17 @@
 
               <div class="mt-2 space-y-2 overflow-hidden text-sm font-semibold
               [&>a]:bg-gradient-to-r [&>a]:from-blue-800/10 [&>a]:via-blue-600/10 [&>a]:to-blue-500/10">
-                <a href="#" class="flex items-center rounded-lg py-2.5 pr-3 pl-4">
+                <a [routerLink]="['/facebook-followers']" class="flex items-center rounded-lg py-2.5 pr-3 pl-4">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 pr-1.5">
                     <path d="M10 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.465 14.493a1.23 1.23 0 0 0 .41 1.412A9.957 9.957 0 0 0 10 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 0 0-13.074.003Z" />
                   </svg>
                   Seguidores en Facebook</a>
-                <a href="#" class="flex items-center rounded-lg py-2.5 pr-3 pl-4">
+                <a [routerLink]="['/facebook-likes']" class="flex items-center rounded-lg py-2.5 pr-3 pl-4">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 pr-1.5">
                     <path d="M1 8.25a1.25 1.25 0 1 1 2.5 0v7.5a1.25 1.25 0 1 1-2.5 0v-7.5ZM11 3V1.7c0-.268.14-.526.395-.607A2 2 0 0 1 14 3c0 .995-.182 1.948-.514 2.826-.204.54.166 1.174.744 1.174h2.52c1.243 0 2.261 1.01 2.146 2.247a23.864 23.864 0 0 1-1.341 5.974C17.153 16.323 16.072 17 14.9 17h-3.192a3 3 0 0 1-1.341-.317l-2.734-1.366A3 3 0 0 0 6.292 15H5V8h.963c.685 0 1.258-.483 1.612-1.068a4.011 4.011 0 0 1 2.166-1.73c.432-.143.853-.386 1.011-.814.16-.432.248-.9.248-1.388Z" />
                   </svg>
                   Likes en Facebook</a>
-                <a href="#" class="flex items-center rounded-lg py-2.5 pr-3 pl-4">
+                <a [routerLink]="['/facebook-views']" class="flex items-center rounded-lg py-2.5 pr-3 pl-4">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 pr-1.5">
                     <path d="M10 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
                     <path fill-rule="evenodd" d="M.664 10.59a1.651 1.651 0 0 1 0-1.186A10.004 10.004 0 0 1 10 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0 1 10 17c-4.257 0-7.893-2.66-9.336-6.41ZM14 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" clip-rule="evenodd" />
@@ -379,22 +380,22 @@
 
               <div class="mt-2 space-y-2 overflow-hidden text-sm font-semibold
               [&>a]:bg-gradient-to-r [&>a]:from-black/20 [&>a]:via-gray-700/10 [&>a]:to-cyan-400/10">
-                <a href="#" class="flex items-center rounded-lg py-2.5 pr-3 pl-4">
+                <a [routerLink]="['/tiktok-followers']" class="flex items-center rounded-lg py-2.5 pr-3 pl-4">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 pr-1.5">
                     <path d="M10 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.465 14.493a1.23 1.23 0 0 0 .41 1.412A9.957 9.957 0 0 0 10 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 0 0-13.074.003Z" />
                   </svg>
-                  Seguidores en Instagram</a>
-                <a href="#" class="flex items-center rounded-lg py-2.5 pr-3 pl-4">
+                  Seguidores en TikTok</a>
+                <a [routerLink]="['/tiktok-likes']" class="flex items-center rounded-lg py-2.5 pr-3 pl-4">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 pr-1.5">
                     <path d="m9.653 16.915-.005-.003-.019-.01a20.759 20.759 0 0 1-1.162-.682 22.045 22.045 0 0 1-2.582-1.9C4.045 12.733 2 10.352 2 7.5a4.5 4.5 0 0 1 8-2.828A4.5 4.5 0 0 1 18 7.5c0 2.852-2.044 5.233-3.885 6.82a22.049 22.049 0 0 1-3.744 2.582l-.019.01-.005.003h-.002a.739.739 0 0 1-.69.001l-.002-.001Z" />
                   </svg>
-                  Likes en Instagram</a>
-                <a href="#" class="flex items-center rounded-lg py-2.5 pr-3 pl-4">
+                  Likes en TikTok</a>
+                <a [routerLink]="['/tiktok-views']" class="flex items-center rounded-lg py-2.5 pr-3 pl-4">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 pr-1.5">
                     <path d="M10 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
                     <path fill-rule="evenodd" d="M.664 10.59a1.651 1.651 0 0 1 0-1.186A10.004 10.004 0 0 1 10 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0 1 10 17c-4.257 0-7.893-2.66-9.336-6.41ZM14 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" clip-rule="evenodd" />
                   </svg>
-                  Visualizaciones en Instagram</a>
+                  Visualizaciones en TikTok</a>
               </div>
             </details>
           </div>
@@ -407,4 +408,5 @@
     </div>
   </div>
 </header>
+<app-shopping-carts [shoppingCart]="btnShoppingCart" (closeShCart)="changeShoppingCart($event)"/>
 <router-outlet/>
