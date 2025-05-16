@@ -28,6 +28,12 @@ export class InstagramLikesComponent {
     { value: 50000, label: '50.000', note: '+5.000 gratis', bonus:5000, price: '20'}
   ];
 
+  ngOnInit() {
+    if (typeof window !== 'undefined'){
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
   }

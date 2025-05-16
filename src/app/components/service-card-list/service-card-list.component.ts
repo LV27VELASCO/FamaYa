@@ -22,7 +22,7 @@ export class ServiceCardListComponent {
       },
       viewers: {
         label: 'Visitas Instagram',
-        link: '/instagram-viewers'
+        link: '/instagram-views'
       }
     },
     {
@@ -36,7 +36,7 @@ export class ServiceCardListComponent {
       },
       viewers: {
         label: 'Visitas Tiktok',
-        link: '/tiktok-viewers'
+        link: '/tiktok-views'
       }
     },
     {
@@ -50,7 +50,7 @@ export class ServiceCardListComponent {
       },
       viewers: {
         label: 'Visitas Facebook',
-        link: '/facebook-viewers'
+        link: '/facebook-views'
       }
     }
   ];
