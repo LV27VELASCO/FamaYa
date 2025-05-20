@@ -1,15 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CharacteristicsComponent } from '../../../components/characteristics/characteristics.component';
 import { FaqsComponent } from '../../../components/faqs/faqs.component';
 import { BannerDiscountComponent } from '../../../components/banner-discount/banner-discount.component';
 import { FooterComponent } from '../../../components/footer/footer.component';
+import { Product } from '../../../interface/models';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CartService } from '../../../services/shoppingCart/cart-service.service';
+import { UtilsService } from '../../../services/utils/utils.service';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
 
 @Component({
   selector: 'app-tiktok-likes',
-  imports: [CharacteristicsComponent,FaqsComponent,BannerDiscountComponent,FooterComponent],
+  imports: [CharacteristicsComponent,FaqsComponent,BannerDiscountComponent,FooterComponent,ReactiveFormsModule,FormsModule,
+    ToastModule, ButtonModule, RippleModule
+  ],
+  providers: [MessageService],
   templateUrl: './tiktok-likes.component.html'
 })
 export class TiktokLikesComponent {
+
+  constructor(private cartService: CartService, private utilService:UtilsService, private messageService: MessageService) {}
 
   dropdownOpen = false;
   highlightedIndex = -1;
@@ -28,6 +41,12 @@ export class TiktokLikesComponent {
     { value: 50000, label: '50.000', note: '+5.000 gratis', bonus:5000, price: '20'}
   ];
 
+  fb = inject(FormBuilder);
+
+  formLink:FormGroup=this.fb.group({
+    urlPost:['', [Validators.required, Validators.pattern('https:\\/\\/[a-zA-Z0-9\\-]+\\.com\\/')]]
+   })
+
   ngOnInit() {
     if (typeof window !== 'undefined'){
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -41,5 +60,22 @@ export class TiktokLikesComponent {
   selectOption(option: any) {
     this.selectedOption = option;
     this.dropdownOpen = false;
+  }
+
+  addToCart(product: Product) {
+    if(this.formLink.valid){
+      this.cartService.addToCart({ ...product });
+      this.messageService.add({ severity: 'success', summary: 'Súper!', detail: 'Likes agregados al carrito!', key: 'br', life: 3000 });
+    }else{
+      this.messageService.add({ severity: 'warn', summary: '¡Oops!', detail: 'Agrega enlace de publicación de TikTok', key: 'br', life: 3000 });
+    }
+  }
+
+  convertNumber(number:string){
+    return this.utilService.convertNumber(number);
+  }
+
+  generateId(){
+    return this.utilService.generarId();
   }
 }

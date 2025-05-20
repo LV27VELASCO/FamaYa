@@ -10,12 +10,12 @@
           <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
             <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
               <div class="flex items-start justify-between">
-                <h2 class="text-xl font-medium bg-gradient-to-r from-purple-700 to-fuchsia-600 bg-clip-text text-transparent" id="slide-over-title">Shopping cart</h2>
-                <div class="ml-3 flex h-7 items-center">
+                <h2 class="text-2xl font-medium bg-gradient-to-r from-purple-700 to-fuchsia-600 bg-clip-text text-transparent py-1" id="slide-over-title">Shopping Cart</h2>
+                <div class="ml-3 flex h-11 items-center">
                   <button (click)="closeShopingCart()" type="button" class="relative -m-2 p-2 text-gray-400 hover:text-gray-500 cursor-pointer">
                     <span class="absolute -inset-0.5"></span>
                     <span class="sr-only">Close panel</span>
-                    <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                    <svg class="size-7" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                     </svg>
                   </button>
@@ -25,55 +25,90 @@
               <div class="mt-8">
                 <div class="flow-root">
                   <ul role="list" class="-my-6 divide-y divide-gray-200">
-                    <li class="flex py-6">
-                      <div class="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
-                        <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/shopping-cart-page-04-product-01.jpg" alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." class="size-full object-cover">
+                    @for (product of productsCart; track $index) {
+                    <li class="flex py-5">
+                      <div class="size-12 shrink-0 overflow-hidden rounded-md">
+                        @if(product.social==1){
+                          <img src="/icons/instagram.svg" alt="Icono Instagram" class="size-full object-cover">
+                        }@if (product.social==2) {
+                          <img src="/icons/facebook.svg" alt="Icono Facebook" class="size-full object-cover">
+                        }@if(product.social==3){
+                          <img src="/icons/tiktok.svg" alt="Icono Tiktok" class="size-full object-cover">
+                        }
                       </div>
 
                       <div class="ml-4 flex flex-1 flex-col">
                         <div>
                           <div class="flex justify-between text-base font-medium text-gray-900">
-                            <h3>
-                              <a href="#">Throwback Hip Bag</a>
+                            <h3 class="flex items-center">
+                              <p class="pr-1">{{product.name}}</p>
+                              @if(product.social==2&&product.option==2){
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 text-gray-400">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.25c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 0 1 2.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 0 0 .322-1.672V2.75a.75.75 0 0 1 .75-.75 2.25 2.25 0 0 1 2.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282m0 0h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 0 1-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 0 0-1.423-.23H5.904m10.598-9.75H14.25M5.904 18.5c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 0 1-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 9.953 4.167 9.5 5 9.5h1.053c.472 0 .745.556.5.96a8.958 8.958 0 0 0-1.302 4.665c0 1.194.232 2.333.654 3.375Z" />
+                                </svg>
+                              }
+                              @if((product.social==1 || product.social==3)&&product.option==2){
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 text-gray-400">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                                </svg>
+                              }
+                              @if(product.option==1){
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 text-gray-400">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+                                </svg>
+                              }
+                              @if(product.option==3){
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 text-gray-400">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                </svg>
+                              }
                             </h3>
-                            <p class="ml-4">$90.00</p>
+                            <p class="ml-4">€{{product.price}}.00</p>
                           </div>
-                          <p class="mt-1 text-sm text-gray-500">Salmon</p>
-                        </div>
-                        <div class="flex flex-1 items-end justify-between text-sm">
-                          <p class="text-gray-500">Qty 1</p>
+                          <div class="flex items-center text-gray-500 font-normal pt-1">
+                            @if(product.option==1){
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                              </svg>
+                            }@else {
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0h18M5.25 6h.008v.008H5.25V6ZM7.5 6h.008v.008H7.5V6Zm2.25 0h.008v.008H9.75V6Z" />
+                              </svg>
+                            }
+                            <p class="pl-1 text-xs w-[70%]">{{product.url}}</p>
+                          </div>
+                          <div class="flex items-center text-gray-500 font-normal pt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                            </svg>
+                            <p class="pl-1 text-xs w-[70%]">
+                              {{product.quantity}}
+                              @if(product.option==1){
+                                <span>Seguidores</span>
+                              }@if(product.option==2){
+                                <span>Likes</span>
+                              }@if(product.option==3){
+                                <span>Vistas</span>
+                              }
+                            </p>
+                          </div>
 
+                        </div>
+                        <div class="flex items-end justify-end text-sm">
                           <div class="flex">
-                            <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
+                            <button (click)="removeItem(product.id)" type="button" class="font-medium bg-gradient-to-r from-purple-700 to-fuchsia-600 bg-clip-text text-transparent cursor-pointer">
+                              Remover
+                            </button>
                           </div>
                         </div>
                       </div>
                     </li>
-                    <li class="flex py-6">
-                      <div class="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
-                        <img src="https://tailwindcss.com/plus-assets/img/ecommerce-images/shopping-cart-page-04-product-02.jpg" alt="Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch." class="size-full object-cover">
-                      </div>
-
-                      <div class="ml-4 flex flex-1 flex-col">
-                        <div>
-                          <div class="flex justify-between text-base font-medium text-gray-900">
-                            <h3>
-                              <a href="#">Medium Stuff Satchel</a>
-                            </h3>
-                            <p class="ml-4">$32.00</p>
-                          </div>
-                          <p class="mt-1 text-sm text-gray-500">Blue</p>
-                        </div>
-                        <div class="flex flex-1 items-end justify-between text-sm">
-                          <p class="text-gray-500">Qty 1</p>
-
-                          <div class="flex">
-                            <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-
+                    }@empty {
+                     <div class="my-auto">
+                       <img src="/img/ShoppingCartEmpty.svg" class="size-full" alt="">
+                     </div>
+                    }
                     <!-- More products... -->
                   </ul>
                 </div>
@@ -83,16 +118,16 @@
             <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
               <div class="flex justify-between text-base font-medium text-gray-900">
                 <p>Subtotal</p>
-                <p>$262.00</p>
+                <p>€{{getTotal()}}.00</p>
               </div>
-              <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+              <p class="mt-0.5 text-sm text-gray-500">No hacemos cobros adicionales.</p>
               <div class="mt-6">
-                <a href="#" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700">Checkout</a>
+                <a href="#" class="flex items-center justify-center rounded-md border border-transparent bg-gradient-to-r from-purple-700 to-fuchsia-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-gradient-to-l">Checkout</a>
               </div>
               <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
                 <p>
                   or
-                  <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">
+                  <button (click)="closeShopingCart()" type="button" class="font-medium text-indigo-500 hover:text-indigo-400 cursor-pointer">
                     Continue Shopping
                     <span aria-hidden="true"> &rarr;</span>
                   </button>

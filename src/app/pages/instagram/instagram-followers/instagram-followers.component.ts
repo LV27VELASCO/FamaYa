@@ -1,15 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CharacteristicsComponent } from '../../../components/characteristics/characteristics.component';
 import { FaqsComponent } from '../../../components/faqs/faqs.component';
 import { BannerDiscountComponent } from '../../../components/banner-discount/banner-discount.component';
 import { FooterComponent } from '../../../components/footer/footer.component';
+import { Product } from '../../../interface/models';
+import { CartService } from '../../../services/shoppingCart/cart-service.service';
+import { UtilsService } from '../../../services/utils/utils.service';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RippleModule } from 'primeng/ripple';
+import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-instagram-followers',
-  imports: [CharacteristicsComponent,FaqsComponent,BannerDiscountComponent,FooterComponent],
+  imports: [CharacteristicsComponent,FaqsComponent,BannerDiscountComponent,FooterComponent,ReactiveFormsModule,FormsModule,
+      ToastModule, ButtonModule, RippleModule
+    ],
+    providers: [MessageService],
   templateUrl: './instagram-followers.component.html'
 })
 export class InstagramFollowersComponent {
+
+  constructor(private cartService: CartService, private utilService:UtilsService, private messageService: MessageService) {}
+
+  fb = inject(FormBuilder);
+  formLink:FormGroup=this.fb.group({
+    urlProfile:['', [Validators.required, Validators.pattern('https:\\/\\/[a-zA-Z0-9\\-]+\\.com\\/')]]
+   })
 
   dropdownOpen = false;
   highlightedIndex = -1;
@@ -42,4 +60,22 @@ export class InstagramFollowersComponent {
     this.selectedOption = option;
     this.dropdownOpen = false;
   }
+
+  addToCart(product: Product) {
+    if(this.formLink.valid){
+      this.cartService.addToCart({ ...product });
+      this.messageService.add({ severity: 'success', summary: 'Súper!', detail: 'Seguidores agregados al carrito!', key: 'br', life: 3000 });
+    }else{
+      this.messageService.add({ severity: 'warn', summary: '¡Oops!', detail: 'Agrega enlace del perfil de instagram', key: 'br', life: 3000 });
+    }
+  }
+
+  convertNumber(number:string){
+    return this.utilService.convertNumber(number);
+  }
+
+  generateId(){
+    return this.utilService.generarId();
+  }
+
 }

@@ -1,19 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CharacteristicsComponent } from '../../../components/characteristics/characteristics.component';
-import { FaqsComponent } from '../../../components/faqs/faqs.component';
 import { BannerDiscountComponent } from '../../../components/banner-discount/banner-discount.component';
+import { CartService } from '../../../services/shoppingCart/cart-service.service';
 import { FooterComponent } from '../../../components/footer/footer.component';
+import { FaqsComponent } from '../../../components/faqs/faqs.component';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Product } from '../../../interface/models';
+import { UtilsService } from '../../../services/utils/utils.service';
+import { ToastModule } from 'primeng/toast';
+import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-instagram-likes',
-  imports: [CharacteristicsComponent,FaqsComponent,BannerDiscountComponent,FooterComponent],
+  imports: [CharacteristicsComponent,FaqsComponent,BannerDiscountComponent,FooterComponent,ReactiveFormsModule,FormsModule,
+    ToastModule, ButtonModule, RippleModule
+  ],
+  providers: [MessageService],
   templateUrl: './instagram-likes.component.html'
 })
 export class InstagramLikesComponent {
 
+  constructor(private cartService: CartService, private utilService:UtilsService, private messageService: MessageService) {}
+
+  linkPost = '';
   dropdownOpen = false;
   highlightedIndex = -1;
   selectedOption = { value: 50, label: '50', note: '', bonus:0, price: '2'};
+  fb = inject(FormBuilder);
+
+  formLink:FormGroup=this.fb.group({
+    urlPost:['', [Validators.required, Validators.pattern('https:\\/\\/[a-zA-Z0-9\\-]+\\.com\\/')]]
+   })
 
   options = [
     { value: 50, label: '50', note: '', bonus:0, price: '2'},
@@ -42,4 +61,22 @@ export class InstagramLikesComponent {
     this.selectedOption = option;
     this.dropdownOpen = false;
   }
+
+  addToCart(product: Product) {
+    if(this.formLink.valid){
+      this.cartService.addToCart({ ...product });
+      this.messageService.add({ severity: 'success', summary: 'Súper!', detail: 'Likes agregados al carrito!', key: 'br', life: 3000 });
+    }else{
+      this.messageService.add({ severity: 'warn', summary: '¡Oops!', detail: 'Agrega enlace de publicación de Instagram', key: 'br', life: 3000 });
+    }
+  }
+
+  convertNumber(number:string){
+    return this.utilService.convertNumber(number);
+  }
+
+  generateId(){
+    return this.utilService.generarId();
+  }
+
 }

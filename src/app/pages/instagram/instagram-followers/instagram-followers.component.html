@@ -43,10 +43,10 @@
                       <p class="text-sm opacity-90">Inserta el enlace de tu perfil de Instagram 👇</p>
                     </div>
 
-                    <div class="p-5 space-y-3">
+                    <form class="p-5 space-y-3" [formGroup]="formLink" (ngSubmit)="addToCart({id: generateId(), name: 'Seguidores Instagram', price: convertNumber(selectedOption.price), quantity: selectedOption.value + selectedOption.bonus, url:formLink.get('urlProfile')?.value, social:1, option: 1})">
                       <div class="rounded-md bg-white px-3 pt-2.5 pb-1.5 outline-none">
-                        <label for="name" class="block text-xs font-medium text-purple-700">Enlace:</label>
-                        <input type="text" name="name" id="name" autocomplete="off" class="block w-full text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
+                        <label for="urlProfile" class="block text-xs font-medium text-purple-700">Enlace:</label>
+                        <input formControlName="urlProfile" type="text" name="urlProfile" id="urlProfile" autocomplete="off" class="block w-full font-semibold text-gray-800 placeholder:text-gray-400 placeholder:font-normal focus:outline-none sm:text-sm/6"
                         placeholder="https://www.instagram.com/cristiano/">
                       </div>
 
@@ -78,10 +78,10 @@
                         </div>
                       </div>
 
-                      <button type="button" class="w-full cursor-pointer py-2 px-4 bg-gradient-to-r from-fuchsia-800 via-red-600 to-yellow-500 hover:bg-gradient-to-l transition-colors duration-300 ease-in-out text-gray-50 rounded-md font-medium transition-colors shadow-sm">
+                      <button type="submit"  class="w-full cursor-pointer py-2 px-4 bg-gradient-to-r from-fuchsia-800 via-red-600 to-yellow-500 hover:bg-gradient-to-l transition-colors duration-300 ease-in-out text-gray-50 rounded-md font-medium  shadow-sm">
                         Agregar al carrito
                       </button>
-                    </div>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -89,14 +89,15 @@
             </div>
           </div>
       </div>
-      <div class="lg:mt-0 lg:shrink-0 lg:grow">
-        <img src="img/InstagramFollowers.svg" class="w-md m-auto" alt="">
+      <div class="lg:mt-0 lg:shrink-0 lg:grow mt-16">
+        <img src="img/InstagramFollowers.svg" class="w-sm m-auto" alt="">
       </div>
     </div>
   </div>
   <!-- Caracteristicas -->
   <app-characteristics/>
   <app-faqs/>
+  <p-toast [breakpoints]="{ '920px': { width: '80%'} }" position="bottom-right" key="br"/>
 </main>
 <app-banner-discount/>
 <app-footer/>
