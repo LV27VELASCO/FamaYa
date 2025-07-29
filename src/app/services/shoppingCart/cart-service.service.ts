@@ -1,6 +1,6 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { Product } from '../../interface/models';
-import { BehaviorSubject } from 'rxjs';
+import { itemCart } from '../../interface/models';
+import { BehaviorSubject, map } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
@@ -8,7 +8,8 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class CartService {
 
-  private items: Product[] = [];
+  private items: itemCart[] = [];
+
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     if (isPlatformBrowser(this.platformId)) {
@@ -18,9 +19,10 @@ export class CartService {
     }
   }
 
-  private cartSubject = new BehaviorSubject<Product[]>([]);
-
+  private cartSubject = new BehaviorSubject<itemCart[]>([]);
   cart$ = this.cartSubject.asObservable();
+  private itemsSubject = new BehaviorSubject<itemCart[]>([]);
+  items$ = this.itemsSubject.asObservable();
 
   private saveCart(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -28,12 +30,13 @@ export class CartService {
     }
   }
 
-  addToCart(product: Product): void {
+  addToCart(product: itemCart): void {
     const existing = this.items.find(p => p.id === product.id);
-
-    this.items.push(product);
-    this.saveCart();
-    this.cartSubject.next(this.items);
+    if(!existing){
+      this.items.push(product);
+      this.saveCart();
+      this.cartSubject.next(this.items);
+    }
   }
 
   removeFromCart(productId: string): void {
@@ -48,14 +51,18 @@ export class CartService {
     this.cartSubject.next(this.items);
   }
 
-  getTotal(): number {
-    return this.items.reduce((total, item) => total + item.price, 0);
+  getTotal() {
+     const data = localStorage.getItem('cart');
+    if (!data) return 0;
+    const items = JSON.parse(data as string) as itemCart[];
+    return items.reduce((total: number, item: any) => total + (item.priceInfo.price || 0), 0);
   }
 
   getQuatityCart(){
     if (isPlatformBrowser(this.platformId)) {
-      const storedCart = JSON.parse(localStorage.getItem('cart') as string);
+      let storedCart = localStorage.getItem('cart');
       if(storedCart){
+        storedCart = JSON.parse(storedCart as string);
         return storedCart?.length;
       }
     }
@@ -63,16 +70,20 @@ export class CartService {
   }
 
   getProducts(){
-    let products:Product[]=[];
+    let products:itemCart[]=[];
 
     if (isPlatformBrowser(this.platformId)) {
       const shoppingCart = localStorage.getItem('cart');
       if(shoppingCart){
-          products = JSON.parse(shoppingCart as string) as Product[];
+          products = JSON.parse(shoppingCart as string) as itemCart[];
           return products;
       }
     }
     return products;
   }
 
+  getLocalStorage(key:string){
+    const initial = localStorage.getItem(key);
+    return initial;
+  }
 }

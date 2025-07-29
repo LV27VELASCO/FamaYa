@@ -13,10 +13,10 @@ export class HeaderComponent {
 
   constructor(private cartService: CartService) {}
 
-  @ViewChild(ShoppingCartsComponent) hijo!: ShoppingCartsComponent;
+  @ViewChild(ShoppingCartsComponent) shoppingCart!: ShoppingCartsComponent;
 
   checkoutCart() {
-    this.hijo.getProducts();
+    this.shoppingCart.getProducts();
   }
 
   btnMenu:boolean=false;

@@ -16,15 +16,15 @@
                 <!-- Left Design - Vertical Cards -->
                 <div class="space-y-2 max-h-[390px] overflow-y-scroll py-2 px-3">
                   <!-- Free Plan Card -->
-                   @for (item of options; track $index) {
-                    <div (click)="selectOption({ value: item.value, label: item.label, note: item.note, bonus:item.bonus, price: item.price})"
-                    [class]="selectedOption.value == item.value ? 'bg-gradient-to-r from-fuchsia-800 via-red-600 to-yellow-500  text-white shadow-md' : 'bg-gradient-to-r from-fuchsia-50 via-red-50 to-yellow-50 text-gray-700'"
+                   @for (item of product.prices; track $index) {
+                    <div (click)="selectOption({ id_price:item.id_price, quantity: item.quantity, bonus:item.bonus, price: item.price})"
+                    [class]="selectedOption.quantity == item.quantity ? 'bg-gradient-to-r from-fuchsia-800 via-red-600 to-yellow-500  text-white shadow-md' : 'bg-gradient-to-r from-fuchsia-50 via-red-50 to-yellow-50 text-gray-700'"
                     class="rounded-lg cursor-pointer overflow-hidden  border-0 transition-all duration-150 ease-in-out">
                       <div class="p-3 flex items-center justify-between">
                         <div class="flex items-center gap-4">
                           <div>
-                            <h3 class="text-xl font-bold">{{item.label}} Seguidores</h3>
-                            <p class="text-sm opacity-90 font-semibold">{{item.note}}</p>
+                            <h3 class="text-[1.6rem] font-bold">{{formatNumber(item.quantity)}} Seguidores</h3>
+                            <p class="text-sm opacity-90 font-semibold">{{item.bonus>0? '+' + formatNumber(item.bonus) + ' gratis':''}}</p>
                           </div>
                         </div>
                         <div class="text-right">
@@ -39,11 +39,11 @@
                 <div class="bg-purple-800 h-full p-2 rounded-[20px]">
                   <div class="rounded-lg overflow-hidden  text-white border-0">
                     <div class="p-6 pb-0">
-                      <h3 class="text-3xl font-bold">{{selectedOption.value + selectedOption.bonus}} Seguidores</h3>
+                      <h3 class="text-[1.8em] font-bold">{{formatNumber(selectedOption.quantity + selectedOption.bonus)}} Seguidores</h3>
                       <p class="text-sm opacity-90">Inserta el enlace de tu perfil de Instagram 👇</p>
                     </div>
 
-                    <form class="p-5 space-y-3" [formGroup]="formLink" (ngSubmit)="addToCart({id: generateId(), name: 'Seguidores Instagram', price: convertNumber(selectedOption.price), quantity: selectedOption.value + selectedOption.bonus, url:formLink.get('urlProfile')?.value, social:1, option: 1})">
+                    <form class="p-5 space-y-3" [formGroup]="formLink" (ngSubmit)="addToCart({id: generateId(), name: 'Seguidores Instagram', url:formLink.get('urlProfile')?.value, social:1, option: 1, serviceInfo:{slug:product.slug}, priceInfo:{ id:selectedOption.id_price, price: selectedOption.price, quantity: selectedOption.quantity, bonus: selectedOption.bonus}})">
                       <div class="rounded-md bg-white px-3 pt-2.5 pb-1.5 outline-none">
                         <label for="urlProfile" class="block text-xs font-medium text-purple-700">Enlace:</label>
                         <input formControlName="urlProfile" type="text" name="urlProfile" id="urlProfile" autocomplete="off" class="block w-full font-semibold text-gray-800 placeholder:text-gray-400 placeholder:font-normal focus:outline-none sm:text-sm/6"
