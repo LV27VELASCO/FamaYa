@@ -43,3 +43,11 @@ export interface token {
 }
 
 
+export interface order {
+  order_id:number;
+  price:number;
+  quantity:number;
+  slug:string ;
+  url:string;
+}
+

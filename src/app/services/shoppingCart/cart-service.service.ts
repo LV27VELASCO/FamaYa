@@ -86,4 +86,10 @@ export class CartService {
     const initial = localStorage.getItem(key);
     return initial;
   }
+
+  clearStorage(){
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.clear()
+    }
+  }
 }

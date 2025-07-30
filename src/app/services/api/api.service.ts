@@ -1,5 +1,5 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { checkout, product, token } from '../../interface/models';
+import { checkout, order, product, token } from '../../interface/models';
 import { Observable, retry, switchMap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
@@ -84,5 +84,27 @@ export class ApiService {
           })
         );
   }
+
+  getOrder(sessionId:string){
+    return this.getToken().pipe(
+      switchMap((res: any) => {
+        const token = res.message;
+        if (!token) throw new Error("Token no recibido");
+
+        if (isPlatformBrowser(this.platformId)) {
+
+          localStorage.setItem('access_token', token);
+        }
+        // Construimos los headers con el token Bearer
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+
+        const url = `${this.baseUrl}/api/get-orders?session_id=${sessionId}`;
+        return this.http.get<order[]>(url, { headers });
+      })
+    );
+  }
+
 
 }

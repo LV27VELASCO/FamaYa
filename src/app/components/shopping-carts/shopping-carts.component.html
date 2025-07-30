@@ -130,7 +130,6 @@
                 <p>Subtotal</p>
                 <p>€{{getTotal()}}.00</p>
               </div>
-              <p class="mt-0.5 text-sm text-gray-500">No hacemos cobros adicionales.</p>
               <div class="mt-6">
                 <button type="button" (click)="onCheckout()" [disabled]="itemsCart.length?false:true" class="flex items-center w-full cursor-pointer justify-center rounded-md border border-transparent bg-gradient-to-r from-purple-700 to-fuchsia-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-gradient-to-l">
                   Checkout

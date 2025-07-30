@@ -1,6 +1,9 @@
 import { Routes } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
+import path from 'path';
+import { SuccessComponent } from './pages/success/success.component';
+import { CancelComponent } from './pages/cancel/cancel.component';
 
 export const routes: Routes = [
   {
@@ -17,5 +20,7 @@ export const routes: Routes = [
        { path: 'tiktok-followers', loadComponent: () => import('./pages/tiktok/tiktok-followers/tiktok-followers.component').then(mod => mod.TiktokFollowersComponent) },
        { path: 'tiktok-likes', loadComponent: () => import('./pages/tiktok/tiktok-likes/tiktok-likes.component').then(mod => mod.TiktokLikesComponent) },
     ]
-  }
+  },
+  {path:'success', component:SuccessComponent},
+  {path:'cancel', component:CancelComponent}
 ];
