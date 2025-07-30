@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
-import path from 'path';
 import { SuccessComponent } from './pages/success/success.component';
 import { CancelComponent } from './pages/cancel/cancel.component';
+import { ConsultOrderComponent } from './pages/consult-order/consult-order.component';
 
 export const routes: Routes = [
   {
@@ -22,5 +22,6 @@ export const routes: Routes = [
     ]
   },
   {path:'success', component:SuccessComponent},
-  {path:'cancel', component:CancelComponent}
+  {path:'cancel', component:CancelComponent},
+  {path:'consult-orders', component:ConsultOrderComponent}
 ];

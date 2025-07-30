@@ -43,11 +43,25 @@ export interface token {
 }
 
 
+export interface order_success {
+  code_order:number;
+  order:order;
+}
 export interface order {
-  order_id:number;
-  price:number;
   quantity:number;
+  price:number;
   slug:string ;
   url:string;
 }
 
+export interface consult_order {
+  code_order:number;
+  date:string;
+  price:number ;
+  quantity:number;
+  remains:string;
+  slug:string;
+  start_count:string ;
+  status:string;
+  url:string;
+}

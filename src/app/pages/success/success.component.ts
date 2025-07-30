@@ -2,11 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FooterComponent } from '../../components/footer/footer.component';
-import { order } from '../../interface/models';
+import { order, order_success } from '../../interface/models';
 import { ApiService } from '../../services/api/api.service';
 import { UtilsService } from '../../services/utils/utils.service';
 import { CartService } from '../../services/shoppingCart/cart-service.service';
-import { isPlatformBrowser } from '@angular/common';
 import { HeaderComponent } from '../../components/header/header.component';
 
 @Component({
@@ -17,7 +16,7 @@ import { HeaderComponent } from '../../components/header/header.component';
 export class SuccessComponent {
 
   sessionId: string | null = null;
-  orderData!: order[];
+  orderData: order_success[]=[];
   socialMedia={
 
   }
@@ -35,7 +34,8 @@ export class SuccessComponent {
       if (this.sessionId) {
         // Llamar a tu backend para recuperar los datos de la orden
         this.api.getOrder(this.sessionId).subscribe({
-          next: (res: order[]) => {
+          next: (res: order_success[]) => {
+            console.log(res)
             this.orderData = res;
             this.loader=false;
           },
